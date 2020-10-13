@@ -7,11 +7,9 @@ class StreamsController extends Controller
 		$this->setModel(new StreamsModel());
 		$this->setView(new View);
 		$this->getView()->setTemplate("tpl/streams.tpl.php");
-		//$this->getModel()->attach($this->getView());
-		//$this->getModel()->setData($this->getModel()->getMostPopular());
-		//$this->getModel()->notify();
-		//$this->getModel()->setData($this->getModel()->getRecommended());
-		//$this->getModel()->notify();
+		$this->getModel()->attach($this->getView());
+		$this->getModel()->setData($this->getModel()->getStreams());
+		$this->getModel()->notify();
 		$this->getView()->display();
 	}
 }

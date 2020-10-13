@@ -22,50 +22,27 @@
 		</div>
 		<header id="streams-header"></header>
 		<main class="streams">
-			<div class="centered">
-				<section class="streams">
-				<a href="#"><img src="images/BNY_hero2R3_1_.png" alt="Data Science Stream" title="Data Scientist">
-				<span class="course-title padded">Data Scientist Stream</span>
-				<span class="padded">Course Instructor</span></a>
-				</section>
-				<section class="streams">
-				<a href="#"><img src="images/BNY_hero2R3_1_.png" alt="Data Science Stream" title="Data Scientist">
-				<span class="course-title padded">Data Scientist Stream</span>
-				<span class="padded">Course Instructor</span></a>
-				</section>
-				<section class="streams">
-				<a href="#"><img src="images/BNY_hero2R3_1_.png" alt="Data Science Stream" title="Data Scientist">
-				<span class="course-title padded">Data Scientist Stream</span>
-				<span class="padded">Course Instructor</span></a>
-				</section>
-				<section class="streams">
-				<a href="#"><img src="images/BNY_hero2R3_1_.png" alt="Data Science Stream" title="Data Scientist">
-				<span class="course-title padded">Data Scientist Stream</span>
-				<span class="padded">Course Instructor</span></a>
-				</section>
-			</div>
-			<div class="centered">
-				<section class="streams">
-				<a href="#"><img src="images/BNY_hero2R3_1_.png" alt="Data Science Stream" title="Data Scientist">
-				<span class="course-title padded">Data Scientist Stream</span>
-				<span class="padded">Course Instructor</span></a>
-				</section>
-				<section class="streams">
-				<a href="#"><img src="images/BNY_hero2R3_1_.png" alt="Data Science Stream" title="Data Scientist">
-				<span class="course-title padded">Data Scientist Stream</span>
-				<span class="padded">Course Instructor</span></a>
-				</section>
-				<section class="streams">
-				<a href="#"><img src="images/BNY_hero2R3_1_.png" alt="Data Science Stream" title="Data Scientist">
-				<span class="course-title padded">Data Scientist Stream</span>
-				<span class="padded">Course Instructor</span></a>
-				</section>
-				<section class="streams">
-				<a href="#"><img src="images/BNY_hero2R3_1_.png" alt="Data Science Stream" title="Data Scientist">
-				<span class="course-title padded">Data Scientist Stream</span>
-				<span class="padded">Course Instructor</span></a>
-				</section>
-			</div>
+		<?php
+				$counter = 0;
+				foreach($this->obsData[0] as $record){
+					if ($counter == 0) {
+						echo "<div class='centered'>";
+					}
+
+					echo '<section class="streams">
+							<a href="#"><img src="images/' . $record["stream_image"] . '" alt="First Course" title="Data structures">
+							<span class="course-title padded">' . $record["stream_name"] . '</span>
+							<span class="padded">' . $record["instructor_name"] .'</span></a>
+						</section>';
+					
+					$counter++;
+			
+					if ($counter == 4) {
+						echo "</div>";
+						$counter = 0;
+					}
+				}
+			?>
 			<footer>
 				<nav>
 					<ul>
