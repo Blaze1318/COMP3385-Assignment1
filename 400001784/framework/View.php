@@ -1,8 +1,8 @@
 <?php
- //require "framework/autoloader.php";
+
 class View implements Observer
 {
-	 private $vars = [];
+	 private $vars = array();
      private $tpl = "";
      private $obsData;
 

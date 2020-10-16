@@ -9,4 +9,5 @@
 		    $this->getView()->display();
         }
     }
+ 
 ?>

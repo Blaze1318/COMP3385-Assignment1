@@ -1,5 +1,5 @@
 <?php
-   class LoginModel extends Model
+   class ProfileModel extends Model
    {
         public function getAll(): array
         {

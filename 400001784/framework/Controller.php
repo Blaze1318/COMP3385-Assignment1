@@ -1,5 +1,5 @@
 <?php
- //require "framework/autoloader.php";
+ 
 abstract class Controller
 {
 	protected $model = null;

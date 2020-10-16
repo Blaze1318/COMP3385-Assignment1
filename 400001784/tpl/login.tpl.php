@@ -20,12 +20,12 @@
 		   <div class="login-box">
 			<div class="login-box-body">
 			<p class="login-box-msg">Be Curious - Sign In</p>
-			<form action="#" method="post">
+			<form action="index.php?controller=LoginUser" method="post">
 			  <div class="form-group has-feedback">
-				<input type="text" class="form-control" placeholder="Email"/>
+				<input type="text" class="form-control" name="email" placeholder="Email"/>
 			  </div>
 			  <div class="form-group has-feedback">
-				<input type="password" class="form-control" placeholder="Password"/>
+				<input type="password" name="password" class="form-control" placeholder="Password"/>
 			  </div>
 			  <div class="row">
 				<div class="col-xs-8">    
@@ -41,7 +41,7 @@
 			  </div>
 			</form>
 			<br>
-			<a href="register.html" class="text-center">Sign Up</a>
+			<a href="index.php?controller=SignUp" class="text-center">Sign Up</a>
        </div><!-- /.login-box-body -->
 	  </div>
 			<footer>

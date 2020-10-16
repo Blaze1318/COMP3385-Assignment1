@@ -1,5 +1,5 @@
 <?php
- //require "framework/autoloader.php";
+
 abstract class Model implements Observable
 {
 	private $observers = array();
