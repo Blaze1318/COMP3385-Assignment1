@@ -12,15 +12,32 @@
 				<li><a href="index.php?controller=Courses">Courses</a></li>
 				<li><a href="index.php?controller=Streams">Streams</a></li>
 				<li><a href="index.php?controller=AboutUs">About Us</a></li>
-				<li><a href="index.php?controller=Login">Login</a></li>
-				<li><a href="index.php?controller=SignUp">Sign Up</a></li>
+				<?php
+					if(SessionClass::userLoggedIn())
+					{
+						echo '<li><a href="index.php?controller=LogOut">LogOut</a></li>';
+					}
+					else
+					{
+						echo '<li><a href="index.php?controller=Login">Login</a></li>';
+						echo '<li><a href="index.php?controller=SignUp">Sign Up</a></li>';
+					}
+				?>
 			</ul>
 		</nav>
 		<main>
 		   <div class="login-box">
 			<div class="login-box-body">
 			<p class="login-box-msg">Be Curious - Sign In</p>
-			<form action="index.php?controller=LoginUser" method="post">
+			<form action="index.php?controller=Login" method="post">
+				<span style="color:red">	
+					<?php
+						if(isset($loginError))
+						{
+							echo $loginError;
+						}
+					?>
+				</span>
 			  <div class="form-group has-feedback">
 				<input type="text" class="form-control" name="email" placeholder="Email"/>
 			  </div>

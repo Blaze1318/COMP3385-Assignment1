@@ -1,34 +1,37 @@
 <?php
     require "framework/autoloader.php";
+    SessionClass::create();
+
     $IndexController = new IndexController();
     $LoginController = new LoginController();
     $ProfileController = new ProfileController();
     $SignupController = new SignupController();
     $StreamsController = new StreamsController();
     $AboutUsController = new AboutUsController();
-
-    $LoginModel = new LoginModel();
+    $CoursesController = new CoursesController();
 
     if($_SERVER["REQUEST_METHOD"] === "GET" && $_GET == null)
     {
         $IndexController->run();
     }
-    elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "Login")
+    elseif(($_SERVER["REQUEST_METHOD"] === "GET"|| $_SERVER["REQUEST_METHOD"] === "POST") && $_GET["controller"] == "Login")
     {
-        $LoginController->run();
-    }
-    elseif($_SERVER["REQUEST_METHOD"] === "POST" && $_GET["controller"] == "LoginUser")
-    {
-        $email = $_POST["email"];
-        $pass = $_POST["password"];
-        $users = $LoginModel->getAll();
-        foreach( $users as $user )
-        {
-            if($email == $user["email"] && password_verify($pass,$user["password"]))
+       if(isset($_SESSION["LoggedIn"]))
+       {
+            if(SessionClass::accessible($_SESSION["LoggedIn"],"login.php"))
             {
-                $ProfileController->run();
+                $LoginController->run();
             }
-        }
+            else
+            {
+                $IndexController->run();
+            }
+       }
+       $LoginController->run();
+    }
+    elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "Profile")
+    {
+        $ProfileController->run();
     }
     elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "LogOut")
     {
@@ -36,9 +39,20 @@
         SessionClass::destroy();
         $IndexController->run();
     }
-    elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "SignUp")
+    elseif(($_SERVER["REQUEST_METHOD"] === "GET"|| $_SERVER["REQUEST_METHOD"] === "POST") && $_GET["controller"] == "SignUp")
     {
-        $SignupController->run();
+       if(isset($_SESSION["LoggedIn"]))
+       {
+            if(SessionClass::accessible($_SESSION["LoggedIn"],"signup.php"))
+            {
+                $SignupController->run();
+            }
+            else
+            {
+                $IndexController->run();
+            }
+       }
+       $SignupController->run();
     }
     elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "Streams")
     {
@@ -47,5 +61,12 @@
     elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "AboutUs")
     {
         $AboutUsController->run();
+    }
+    elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "Courses")
+    {
+        if(SessionClass::accessible("LoggedIn","Yes"))
+        {
+            $CoursesController->run();
+        }
     }
 ?>

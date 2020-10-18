@@ -33,11 +33,23 @@ class SessionClass
 		}
 	}
 
+	public static function userLoggedIn():bool
+	{
+		if (session_status() == PHP_SESSION_ACTIVE) 
+		{ 
+			if(isset($_SESSION["LoggedIn"]))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static function accessible($user,$page):bool
 	{
 		   if (session_status() == PHP_SESSION_ACTIVE){
-                if (isset($_SESSION["user"])){
-                    if ($_SESSION["user"] == $user && $page !== "login.php" && $page !== "signup.php") {
+                if (isset($_SESSION["LoggedIn"])){
+                    if ($_SESSION["LoggedIn"] == $user && $page !== "login.php" && $page !== "signup.php") {
                         return true;
                     }
                 } else {

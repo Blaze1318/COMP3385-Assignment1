@@ -25,19 +25,19 @@
             <input type="text" class="form-control" name="formFullName" placeholder="Full name"/>
           </div>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Email"/>
+            <input type="text" class="form-control" name="email" placeholder="Email"/>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password"/>
+            <input type="password" class="form-control" name="password" placeholder="Password"/>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Retype password"/>
+            <input type="password" class="form-control" name="repassword" placeholder="Retype password"/>
           </div>
           <div class="row">
             <div class="col-xs-8">    
               <div class="checkbox icheck">
                 <label>
-                  <input type="checkbox"> I agree to the <a href="#">terms</a>
+                  <input name="check" type="checkbox"> I agree to the <a href="#">terms</a>
                 </label>
               </div>                        
             </div><!-- /.col -->
