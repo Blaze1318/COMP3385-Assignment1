@@ -41,10 +41,10 @@ class SessionsTest extends Testcase
 	public function testAccessible()
 	{
 		SessionClass::create();
-		SessionClass::add("user","Test123");
-		$this->assertEquals(SessionClass::accessible("user","login.php"),false);
-		$this->assertEquals(SessionClass::accessible("user","login.php"),false);
-		SessionClass::remove("user");
+		SessionClass::add("LoggedIn","Test123");
+		$this->assertEquals(SessionClass::accessible("LoggedIn","login.php"),false);
+		$this->assertEquals(SessionClass::accessible("LoggedIn","login.php"),false);
+		SessionClass::remove("LoggedIn");
 		$this->assertEquals(SessionClass::accessible(null,"index.php"),true);
 		$this->assertEquals(SessionClass::accessible(null,"signup.php"),true);
 		$this->assertEquals(SessionClass::accessible(null,"courses.php"),false);

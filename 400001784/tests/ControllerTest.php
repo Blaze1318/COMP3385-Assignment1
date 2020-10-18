@@ -14,7 +14,7 @@ class ControllerTest extends Testcase
     public function testControllerSetModel()
     {
         $IndexController = new IndexController();
-        $IndexModel = new IndexModel();
+        $IndexModel = new CoursesModel();
         $IndexController->setModel($IndexModel);
         $this->assertEquals($IndexModel,$IndexController->getModel());
     }
@@ -26,9 +26,10 @@ class ControllerTest extends Testcase
         $IndexController->setView($IndexView);
         $this->assertEquals($IndexView,$IndexController->getView());
     }
+
     public function testControllerRun()
     {
-
+        //CANNOT TEST THIS FUNCTION
     } 
 }
 ?>

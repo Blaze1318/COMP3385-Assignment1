@@ -25,7 +25,7 @@ class ViewTest extends Testcase
 		$view->setTemplate($text);
 		$data = file_get_contents("../data/courses.json");
 		$jsonData = json_decode($data,true);
-		$model = new IndexModel();
+		$model = new CoursesModel();
 		$model->attach($view);
 		$model->setData($model->getAll());
 		$model->notify();
