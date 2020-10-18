@@ -3,13 +3,7 @@
     {
         public function run():void
         {
-            $this->setModel(new SignupModel());
-		    $this->setView(new View);
-		    $this->getView()->setTemplate("tpl/signup.tpl.php");
-            $this->getView()->display();
-            
-
-            if($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "SignUP")
+            if($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "SignUp")
             {
                 $this->setView(new View);
                 $this->getView()->setTemplate("tpl/signup.tpl.php");
@@ -21,27 +15,47 @@
                 $email = $_POST["email"];
                 $pass = $_POST["password"];
                 $repass = $_POST["repassword"];
-                $check = $_POST["check"];
+
                 $this->setModel(new UsersModel);
                 $this->setView(new View);
                 $this->getView()->setTemplate("tpl/signup.tpl.php");
-                $user = $this->getModel()->getRecord($email);
-                if($user == array())
+                $user = $this->getModel()->getAll();
+                $errors = array();
+                if(!Validator::validEmail($email))
                 {
-                    $this->getView()->addVar("signupError","Invalid email/password");
-                    $this->getView()->display();
+                    array_push($errors,"Invalid Email");
                 }
-                elseif(!password_verify($pass,$user["password"]))
+                if(!Validator::validPassword($pass))
                 {
-                    $this->getView()->addVar("signupError","Invalid email/password");
-                    $this->getView()->display();
+                    array_push($errors,"Invalid Password Format/Length");
+                }
+                if(!Validator::validRePassword($pass,$repass))
+                {
+                    array_push($errors,"Invalid Passwords Do Not Match!");
+                }
+                if(!isset($_POST["check"]))
+                {
+                    array_push($errors,"Terms Must Be Agreed To");
+                }
+
+                if($errors == array())
+                {
+                   SessionClass::create();
+                   SessionClass::add("success","Sign Up Successful. Please login below");
+                   $newUser = array(
+                        "name" => $name,
+                        "email" => $email,
+                        "password" => password_hash($pass, PASSWORD_DEFAULT)
+                   );
+                   $user = $this->getModel()->update($newUser);
+                   header("Location:index.php?controller=Login");
                 }
                 else
                 {
-                    SessionClass::create();
-                    SessionClass::add("LoggedIn",$user["email"]);
-                    header("Location:index.php?controller=Profile");
+                    $this->getView()->addVar("errors",$errors);
+                    $this->getView()->display();
                 }
+            
             }
         }
     }

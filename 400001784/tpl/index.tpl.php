@@ -15,6 +15,7 @@
 				<?php
 					if(SessionClass::userLoggedIn())
 					{
+						echo '<li><a href="index.php?controller=Profile">Profile</a></li>';
 						echo '<li><a href="index.php?controller=LogOut">LogOut</a></li>';
 					}
 					else

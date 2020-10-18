@@ -24,14 +24,29 @@
             }
             else
             {
-                $IndexController->run();
+                header("Location:index.php");
             }
        }
        $LoginController->run();
     }
     elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "Profile")
     {
-        $ProfileController->run();
+        if(isset($_SESSION["LoggedIn"]))
+        {
+             if(SessionClass::accessible($_SESSION["LoggedIn"],"profile.php"))
+             {
+                 
+                 $ProfileController->run();
+             }
+             else
+             {
+              
+               header("Location:index.php");
+             }
+        }
+        else{
+            header("Location:index.php");
+        }
     }
     elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "LogOut")
     {
@@ -49,7 +64,7 @@
             }
             else
             {
-                $IndexController->run();
+                header("Location:index.php");
             }
        }
        $SignupController->run();
@@ -64,9 +79,20 @@
     }
     elseif($_SERVER["REQUEST_METHOD"] === "GET" && $_GET["controller"] == "Courses")
     {
-        if(SessionClass::accessible("LoggedIn","Yes"))
-        {
-            $CoursesController->run();
-        }
+        if(isset($_SESSION["LoggedIn"]))
+       {
+            if(SessionClass::accessible($_SESSION["LoggedIn"],"courses.php"))
+            {
+                $CoursesController->run();
+            }
+            else
+            {
+                header("Location:index.php");
+            }
+       }
+       else{
+             header("Location:index.php");
+       }
+     
     }
 ?>

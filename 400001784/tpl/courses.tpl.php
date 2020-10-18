@@ -15,6 +15,7 @@
 				<?php
 					if(SessionClass::userLoggedIn())
 					{
+						echo '<li><a href="index.php?controller=Profile">Profile</a></li>';
 						echo '<li><a href="index.php?controller=LogOut">LogOut</a></li>';
 					}
 					else
@@ -28,6 +29,23 @@
 		<main>
 		<h1>Courses</h1>
 		<ul class="course-list">
+			<?php
+				foreach($this->obsData[0] as $record){
+					echo '<li><div>
+							<a href="#"><img src="images/' .$record["course_image"] .'" alt="course image"></a>
+							</div>
+							<div>
+							<a href="#"><span class="faculty-department">' . $record["faculty_dept_name"] .'</span>	
+								<span class="course-title">'.$record["course_name"]   .  '</span>
+								<span class="instructor">'.$record["instructor_name"]  . '</span></a>
+							</div>
+							<div>
+								<p>Get Curious.</p>
+								<a href="#" class="startnow-button startnow-btn">Start Now!</a>
+							</div>
+						</li>';
+				}
+			?>
 			<li><div>
 				<a href="#"><img src="images/innovation.jpg" alt="course image"></a>
 				</div>

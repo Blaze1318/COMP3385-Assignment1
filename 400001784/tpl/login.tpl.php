@@ -36,8 +36,17 @@
 						{
 							echo $loginError;
 						}
+
 					?>
 				</span>
+
+				<?php
+					if(isset($_SESSION["success"]))
+					{
+						echo "<span>" . $_SESSION["success"] ."</span>" . "<br>";
+						SessionClass::remove("success");
+					}
+				?>
 			  <div class="form-group has-feedback">
 				<input type="text" class="form-control" name="email" placeholder="Email"/>
 			  </div>

@@ -13,64 +13,31 @@
 				<li><a href="index.php?controller=Streams">Streams</a></li>
 				<li><a href="index.php?controller=AboutUs">About Us</a></li>
 				<li><a href="index.php?controller=LogOut">Log Out</a></li>
+			    <li><a href="index.php?controller=Profile">Profile</a></li>
 			</ul>
 		</nav>
 		<main>
 		<h1>Profile Page</h1>
 		<h2>Enrolled Courses</h2>
 		<ul class="course-list">
-			<li><div>
-				<a href="#"><img src="images/innovation.jpg" alt="course image"></a>
-				</div>
-				<div>
-				<a href="#"><span class="faculty-department">Faculty or Department</span>	
-					<span class="course-title">Course Title</span>
-					<span class="instructor">Course Instructor</span></a>
-				</div>
-				<div>
-					<a href="#" class="startnow-btn startnow-button">Go to Class!</a>
-					<a href="#" class="startnow-btn unenroll-button">Unenroll</a>
-				</div>
-			</li>
-			<li><div>
-				<a href="#"><img src="images/innovation.jpg" alt="course image"></a>
-				</div>
-				<div>
-				<a href="#"><span class="faculty-department">Faculty or Department</span>	
-					<span class="course-title">Course Title</span>
-					<span class="instructor">Course Instructor</span></a>
-				</div>
-				<div>
-					<a href="#" class="startnow-button startnow-btn">Go to Class!</a>
-					<a href="#" class="startnow-btn unenroll-button">Unenroll</a>
-				</div>
-			</li>
-			<li><div>
-				<a href="#"><img src="images/innovation.jpg" alt="course image"></a>
-				</div>
-				<div>
-				<a href="#"><span class="faculty-department">Faculty or Department</span>	
-					<span class="course-title">Course Title</span>
-					<span class="instructor">Course Instructor</span></a>
-				</div>
-				<div>
-					<a href="#" class="startnow-button startnow-btn">Go to Class!</a>
-					<a href="#" class="startnow-btn unenroll-button">Unenroll</a>
-				</div>
-			</li>
-			<li><div>
-				<a href="#"><img src="images/innovation.jpg" alt="course image"></a>
-				</div>
-				<div>
-				<a href="#"><span class="faculty-department">Faculty or Department</span>	
-					<span class="course-title">Course Title</span>
-					<span class="instructor">Course Instructor</span></a>
-				</div>
-				<div>
-					<a href="#" class="startnow-button startnow-btn">Go to Class!</a>
-					<a href="#" class="startnow-btn unenroll-button">Unenroll</a>
-				</div>
-			</li>
+			<?php
+				foreach($this->obsData[0] as $record)
+				{
+					echo '<li><div>
+						<a href="#"><img src="images/' .$record["course_image"] .'"alt="course image"></a>
+						</div>
+						<div>
+						<a href="#"><span class="faculty-department">' . $record["faculty_dept_name"] .'</span>	
+							<span class="course-title">'.$record["course_name"]   .  '</span>
+							<span class="instructor">'.$record["instructor_name"]  . '</span></a>
+						</div>
+						<div>
+							<a href="#" class="startnow-btn startnow-button">Go to Class!</a>
+							<a href="#" class="startnow-btn unenroll-button">Unenroll</a>
+						</div>
+					</li>';
+				}
+			?>
 		</ul>
 			<footer>
 				<nav>

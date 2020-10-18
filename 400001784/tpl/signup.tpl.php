@@ -20,7 +20,16 @@
 		   <div class="register-box">
 			<div class="register-box-body">
 			<p class="login-box-msg">Sign Up - Feed Your Curiosity</p>
-        <form action="processRegisteration.php" method="post">
+			<?php
+				if(isset($errors))
+				{
+					foreach($errors as $err)
+					{
+						echo "<span style='color:red;'>" . $err ."</span>" . "<br>";
+					}
+				}
+			?>
+        <form action="index.php?controller=SignUp" method="post">
           <div class="form-group has-feedback">
             <input type="text" class="form-control" name="formFullName" placeholder="Full name"/>
           </div>

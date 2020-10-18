@@ -3,11 +3,12 @@
     {
         public function run():void
         {
-              SessionClass::create();
-              SessionClass::add("LoggedIn","Yes");
-              $this->setModel(new ProfileModel());
+            $this->setModel(new UsersModel());
 		    $this->setView(new View);
-		    $this->getView()->setTemplate("tpl/profile.tpl.php");
+            $this->getView()->setTemplate("tpl/profile.tpl.php");
+            $this->getModel()->attach($this->getView());
+            $this->getModel()->setData($this->getModel()->getCourses());
+            $this->getModel()->notify();
 		    $this->getView()->display();
         }
     }
